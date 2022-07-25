@@ -5,12 +5,14 @@ import "element-ui/lib/theme-chalk/index.css";
 import router from "./router";
 import "tailwindcss/tailwind.css";
 import "normalize.css";
+import store from "./store";
 
 Vue.config.productionTip = false;
 
 Vue.use(ElementUI);
 
 new Vue({
+  store,
   router,
   render: (h) => h(App),
 }).$mount("#app");

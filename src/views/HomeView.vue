@@ -1,20 +1,64 @@
 <template>
-  <div>
-    Hi {{name}}, 这里是Home视图
-  </div>
+  <el-row :gutter="15">
+    <el-col :span="8">
+      <el-card class="mt-5" shadow="hover">
+        <div class="flex justify-start gap-5 m-3 items-center" slot="header">
+          <img
+            :src="imgUrl"
+            class="w-20 h-20 rounded-full bg-red-300"
+            alt="Avatar"
+          />
+          <div>
+            <h3 class="text-lg">Admin</h3>
+            <p class="text-gray-400 py-2 text-base">超级管理员</p>
+          </div>
+        </div>
+        <div class="footer border-0">
+          <p class="text-gray-400 pl-3 m-0 text-sm">
+            上次IP地址: {{ ipInfo.ip_address }}
+          </p>
+          <p class="text-gray-400 pl-3 text-sm">
+            登录地点: {{ ipInfo.city }} {{ ipInfo.country }}
+          </p>
+        </div>
+      </el-card>
+      <el-card class="mt-5" shadow="hover">
+        <SalesOverview />
+      </el-card>
+    </el-col>
+  </el-row>
 </template>
 
 <script lang="ts">
-import { Vue } from "vue-property-decorator";
-// import AsideBar from "@/components/AsideBar.vue";
+import axios from "axios";
+import { Component, Vue } from "vue-property-decorator";
+import SalesOverview from "@/components/SalesOverview.vue";
 
-// @Component({
-//   components: {
-//     AsideBar,
-//   },
-// })
+@Component({
+  components: {
+    SalesOverview,
+  },
+})
 export default class HomeView extends Vue {
   name = "Alex7777";
+  imgUrl = require("@/assets/peep-1.png");
+  ipInfo = {};
+
+  mounted() {
+    axios
+      .get(
+        "https://ipgeolocation.abstractapi.com/v1/?api_key=d2448e6f3e954983b3edb8c7f8944eae"
+      )
+      .then((res) => {
+        let { country, city, ip_address } = res.data;
+        console.log(res.data);
+        this.ipInfo = {
+          country,
+          city,
+          ip_address,
+        };
+      });
+  }
 }
 </script>
 

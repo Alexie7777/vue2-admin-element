@@ -31,7 +31,7 @@ export default class CommonHeader extends Vue {
   imgUrl = require("../assets/peep-1.png");
 
   handleToggle() {
-    this.$emit("toggleCollapse");
+    this.$store.commit("toggleMenu");
   }
 }
 </script>

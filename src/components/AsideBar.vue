@@ -1,40 +1,62 @@
 <template>
-  <el-menu default-active="1" active-text-color="#ffd04b" background-color="#545c64" text-color="#fff" router
-    class="el-menu-vertical-demo h-screen" @open="handleOpen" @close="handleClose" :collapse="isCollapse">
-    <span v-show="!isCollapse" class="block text-white text-center p-2">通用后台管理系统</span>
+  <el-menu
+    default-active="1"
+    active-text-color="#ffd04b"
+    background-color="#545c64"
+    text-color="#fff"
+    router
+    class="el-menu-vertical-demo h-screen"
+    @open="handleOpen"
+    @close="handleClose"
+    :collapse="isCollapse"
+  >
+    <h3
+      v-show="!isCollapse"
+      class="block h-10 text-white text-center p-2 whitespace-nowrap"
+    >
+      通用后台管理系统
+    </h3>
 
-
-    <el-menu-item v-for="(item) in noChildrens" v-bind:index="item.path" :key="item.path">
-      <i :class=" 'el-icon-' + item.icon "></i>
+    <el-menu-item
+      v-for="item in noChildrens"
+      v-bind:index="item.path"
+      :key="item.path"
+    >
+      <i :class="'el-icon-' + item.icon"></i>
       <span slot="title">{{ item.label }}</span>
     </el-menu-item>
 
-
-    <el-submenu v-for="( item, index ) in hasChildrens" :key="index" :index="item.path" >
+    <el-submenu
+      v-for="(item, index) in hasChildrens"
+      :key="index"
+      :index="item.path"
+    >
       <template slot="title">
         <i :class="'el-icon-' + item.icon"></i>
-        <span slot="title">{{item.label}}</span>
+        <span slot="title">{{ item.label }}</span>
       </template>
       <el-menu-item-group>
-       <el-menu-item v-for=" subItem in item.children" :key="subItem.path" :index="subItem.path">
-                  <i :class="'el-icon-' + subItem.icon"></i>
-          {{subItem.label}}</el-menu-item>
+        <el-menu-item
+          v-for="subItem in item.children"
+          :key="subItem.path"
+          :index="subItem.path"
+        >
+          <i :class="'el-icon-' + subItem.icon"></i>
+          {{ subItem.label }}</el-menu-item
+        >
       </el-menu-item-group>
     </el-submenu>
-
   </el-menu>
-
 </template>
 
 <script lang="ts">
-import { Vue, Prop, Component } from 'vue-property-decorator';
+import { Vue, Prop, Component } from "vue-property-decorator";
 @Component
-
 export default class AsideBar extends Vue {
-  @Prop() isCollapse!:boolean
+  @Prop() isCollapse!: boolean;
   menu = [
     {
-      path: "/",
+      path: "/home",
       name: "home",
       label: "首页",
       icon: "s-home",
@@ -45,7 +67,7 @@ export default class AsideBar extends Vue {
       name: "mall",
       label: "商品管理",
       icon: "video-play",
-      url: "MallManage/MallManage"
+      url: "MallManage/MallManage",
     },
     {
       path: "/user",
@@ -64,19 +86,18 @@ export default class AsideBar extends Vue {
           name: "page1",
           label: "页面1",
           icon: "setting",
-          url: "Other/PageOne"
+          url: "Other/PageOne",
         },
         {
           path: "/page2",
           name: "page2",
           label: "页面2",
           icon: "setting",
-          url: "Other/PageTwo"
+          url: "Other/PageTwo",
         },
-      ]
-    }
-
-  ]
+      ],
+    },
+  ];
 
   handleOpen(key, keyPath) {
     console.log(key, keyPath);
@@ -87,13 +108,12 @@ export default class AsideBar extends Vue {
   }
 
   get noChildrens() {
-    return this.menu.filter(item => !(item.children))
+    return this.menu.filter((item) => !item.children);
   }
 
   get hasChildrens() {
-    return this.menu.filter(item => (item.children))
+    return this.menu.filter((item) => item.children);
   }
-
 }
 </script>
 
