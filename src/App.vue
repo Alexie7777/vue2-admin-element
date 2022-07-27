@@ -33,4 +33,14 @@ body {
 #app {
   height: 100vh;
 }
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+}
 </style>

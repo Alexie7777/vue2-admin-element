@@ -1,6 +1,6 @@
 <template>
   <el-row :gutter="15">
-    <el-col :span="8">
+    <el-col :span="6">
       <el-card class="mt-5" shadow="hover">
         <div class="flex justify-start gap-5 m-3 items-center" slot="header">
           <img
@@ -26,6 +26,7 @@
         <SalesOverview />
       </el-card>
     </el-col>
+    <OrderOverview />
   </el-row>
 </template>
 
@@ -33,10 +34,12 @@
 import axios from "axios";
 import { Component, Vue } from "vue-property-decorator";
 import SalesOverview from "@/components/SalesOverview.vue";
+import OrderOverview from "@/components/OrderOverview.vue";
 
 @Component({
   components: {
     SalesOverview,
+    OrderOverview,
   },
 })
 export default class HomeView extends Vue {
