@@ -15,7 +15,7 @@
         </div>
         <div class="footer border-0">
           <p class="text-gray-400 pl-3 m-0 text-sm">
-            上次IP地址: {{ ipInfo.ip_address }}
+            IP地址: {{ ipInfo.ip_address }}
           </p>
           <p class="text-gray-400 pl-3 text-sm">
             登录地点: {{ ipInfo.city }} {{ ipInfo.country }}
