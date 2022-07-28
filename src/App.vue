@@ -22,14 +22,6 @@ export default class App extends Vue {
 </script>
 
 <style lang="less">
-*,
-html,
-body {
-  margin: 0;
-  border: 0;
-  padding: 0;
-}
-
 #app {
   height: 100vh;
 }
@@ -38,6 +30,8 @@ body {
 *::before,
 *::after {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 img {
