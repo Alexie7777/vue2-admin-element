@@ -2,17 +2,31 @@
   <div>
     <el-col :span="18" class="mt-5">
       <el-card style="height: 260px">
-        <div style="height: 260px" ref="line"></div>
+        <!-- <div style="height: 260px" ref="line"></div> -->
+        <ECharts
+          style="height: 260px"
+          :isAxisChart="true"
+          :chartOptions="echartsData.order"
+        />
       </el-card>
     </el-col>
     <el-col class="mt-5" :span="9">
       <el-card style="height: 250px">
-        <div style="height: 250px" ref="histogram"></div>
+        <!-- <div style="height: 250px" ref="histogram"></div> -->
+        <ECharts
+          :isAxisChart="true"
+          :chartOptions="echartsData.user"
+          style="height: 250px"
+        />
       </el-card>
     </el-col>
     <el-col class="mt-5" :span="9">
       <el-card style="height: 250px">
-        <div style="height: 250px" ref="pie"></div>
+        <ECharts
+          :isAxisChart="false"
+          :chartOptions="echartsData.video"
+          style="height: 250px"
+        />
       </el-card>
     </el-col>
   </div>
@@ -20,19 +34,38 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { Lseries } from "@/type/series";
+// import { Lseries } from "@/type/series";
 import * as echarts from "echarts";
+import ECharts from "@/components/ECharts.vue";
 
-@Component
+@Component({
+  components: {
+    ECharts,
+  },
+})
 export default class ChartView extends Vue {
-  mounted() {
+  echartsData = {
+    order: {
+      xData: [],
+      series: [],
+    },
+    user: {
+      xData: [],
+      series: [],
+    },
+    video: {
+      series: [],
+    },
+  };
+
+  created() {
     this.$http.get("/api/homeData").then((res) => {
       const { code, data } = res.data;
       if (code == 200) {
         const order = data.orderData;
         const xDate = order.date;
         const keyArray = Object.keys(order.data[0]);
-        const series: Lseries[] = [];
+        const series = [];
         keyArray.forEach((key) => {
           series.push({
             name: key,
@@ -41,63 +74,34 @@ export default class ChartView extends Vue {
           });
         });
 
-        const lineOptions = {
-          xAxis: {
-            data: xDate,
-          },
-          yAxis: {},
-          legend: {
-            data: keyArray,
-          },
-          series,
-        };
+        this.echartsData.order.xData = xDate;
+        this.echartsData.order.series = series;
 
         const user = data.userData;
-        const histogramOptions = {
-          xAxis: {
-            data: user.map((item) => item["date"]),
+        this.echartsData.user.xData = user.map((item) => item["date"]);
+        this.echartsData.user.series = [
+          {
+            type: "bar",
+            data: user.map((item) => item["new"]),
           },
-          yAxis: {},
-          series: [
-            {
-              type: "bar",
-              data: user.map((item) => item["new"]),
-            },
-            {
-              type: "bar",
-              data: user.map((item) => item["active"]),
-            },
-          ],
-        };
+          {
+            type: "bar",
+            data: user.map((item) => item["active"]),
+          },
+        ];
 
         const pie = data.videoData;
-        const pieOptions = {
-          series: [
-            {
-              type: "pie",
-              data: pie.map((item) => {
-                return {
-                  name: item["name"],
-                  value: item["value"],
-                };
-              }),
-            },
-          ],
-        };
-        console.log(pieOptions);
-
-        const lineChart = echarts.init(this.$refs.line as HTMLElement);
-        lineChart.setOption(lineOptions);
-
-        const histogramChart = echarts.init(
-          this.$refs.histogram as HTMLElement
-        );
-        histogramChart.setOption(histogramOptions);
-
-        const pieChart = echarts.init(this.$refs.pie as HTMLElement);
-        pieChart.setOption(pieOptions);
-
-        console.log(data);
+        this.echartsData.video.series = [
+          {
+            type: "pie",
+            data: pie.map((item) => {
+              return {
+                name: item["name"],
+                value: item["value"],
+              };
+            }),
+          },
+        ];
       }
     });
   }
