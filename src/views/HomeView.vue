@@ -57,7 +57,6 @@ export default class HomeView extends Vue {
       )
       .then((res) => {
         let { country, city, ip_address } = res.data;
-        console.log(res.data);
         this.ipInfo = {
           country,
           city,

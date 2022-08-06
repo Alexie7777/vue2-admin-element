@@ -4,6 +4,7 @@ specifiers:
   '@babel/core': ^7.18.9
   '@babel/helper-compilation-targets': ^7.18.9
   '@tailwindcss/postcss7-compat': ^2.2.17
+  '@types/mockjs': ^1.0.6
   '@typescript-eslint/eslint-plugin': ^5.4.0
   '@typescript-eslint/parser': ^5.4.0
   '@vue/cli-plugin-babel': ~5.0.0
@@ -16,6 +17,7 @@ specifiers:
   babel-plugin-component: ^1.1.1
   core-js: ^3.8.3
   date-fns: ^2.29.1
+  echarts: ^5.3.3
   element-ui: ^2.15.9
   eslint: ^7.32.0
   eslint-plugin-vue: ^8.0.3
@@ -40,8 +42,8 @@ dependencies:
   axios: 0.27.2
   core-js: 3.23.5
   date-fns: 2.29.1
+  echarts: 5.3.3
   element-ui: 2.15.9_vue@2.7.8
-  mockjs: 1.1.0
   normalize.css: 8.0.1
   postcss: 7.0.39
   postcss-load-config: 4.0.1_postcss@7.0.39
@@ -55,6 +57,7 @@ dependencies:
 devDependencies:
   '@babel/core': 7.18.9
   '@babel/helper-compilation-targets': 7.18.9_@babel+core@7.18.9
+  '@types/mockjs': 1.0.6
   '@typescript-eslint/eslint-plugin': 5.30.7_3xszmw2wotqcg7kmkh5rbbx52q
   '@typescript-eslint/parser': 5.30.7_sgaiclxgc5mltnpgmg7py4v6ca
   '@vue/cli-plugin-babel': 5.0.8_wl7d2hpiuow3ut5bj7tv5qa5re
@@ -67,6 +70,7 @@ devDependencies:
   eslint-plugin-vue: 8.7.1_eslint@7.32.0
   less: 4.1.3
   less-loader: 8.1.1_less@4.1.3
+  mockjs: 1.1.0
   typescript: 4.5.5
   vue-template-compiler: 2.7.8
 
@@ -1578,6 +1582,10 @@ packages:
 
   /@types/minimist/1.2.2:
     resolution: {integrity: sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==}
+    dev: true
+
+  /@types/mockjs/1.0.6:
+    resolution: {integrity: sha512-Yu5YlqbYZyqsd6LjO4e8ONJDN9pTSnciHDcRP4teNOh/au2b8helFhgRx+3w8xsTFEnwr9jtfTVJbAx+eYmlHA==}
     dev: true
 
   /@types/node/18.0.6:
@@ -3752,6 +3760,13 @@ packages:
     engines: {node: '>=6.0.0'}
     dev: true
 
+  /echarts/5.3.3:
+    resolution: {integrity: sha512-BRw2serInRwO5SIwRviZ6Xgm5Lb7irgz+sLiFMmy/HOaf4SQ+7oYqxKzRHAKp4xHQ05AuHw1xvoQWJjDQq/FGw==}
+    dependencies:
+      tslib: 2.3.0
+      zrender: 5.3.2
+    dev: false
+
   /ee-first/1.1.1:
     resolution: {integrity: sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=}
     dev: true
@@ -5230,7 +5245,7 @@ packages:
     hasBin: true
     dependencies:
       commander: 8.3.0
-    dev: false
+    dev: true
 
   /modern-normalize/1.1.0:
     resolution: {integrity: sha512-2lMlY1Yc1+CUy0gw4H95uNN7vjbpoED7NNRSBHE25nWfLBdmMzFCsPshlzbxHz+gYMcBEUN8V4pU16prcdPSgA==}
@@ -6991,6 +7006,10 @@ packages:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
     dev: true
 
+  /tslib/2.3.0:
+    resolution: {integrity: sha512-N82ooyxVNm6h1riLCoyS9e3fuJ3AMG2zIZs2Gd1ATcSFjSA23Q0fzjjZeh0jbJvWVDZ0cJT8yaNNaaXHzueNjg==}
+    dev: false
+
   /tslib/2.4.0:
     resolution: {integrity: sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==}
     dev: true
@@ -7609,3 +7628,9 @@ packages:
       normalize-path: 1.0.0
       strip-indent: 2.0.0
     dev: true
+
+  /zrender/5.3.2:
+    resolution: {integrity: sha512-8IiYdfwHj2rx0UeIGZGGU4WEVSDEdeVCaIg/fomejg1Xu6OifAL1GVzIPHg2D+MyUkbNgPWji90t0a8IDk+39w==}
+    dependencies:
+      tslib: 2.3.0
+    dev: false
