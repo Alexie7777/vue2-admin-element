@@ -77,7 +77,6 @@ export default class AsideBar extends Vue {
       url: "UserManage/UserManage",
     },
     {
-      path: "/Other",
       label: "其他",
       icon: "more",
       children: [
