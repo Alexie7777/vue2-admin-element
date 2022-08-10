@@ -1,6 +1,6 @@
 <template>
   <el-menu
-    default-active="1"
+    :default-active="$route.path"
     active-text-color="#ffd04b"
     background-color="#545c64"
     text-color="#fff"
@@ -40,7 +40,7 @@
         <el-menu-item
           v-for="subItem in item.children"
           :key="subItem.path"
-          @click="clickMenu(item)"
+          @click="clickMenu(subItem)"
           :index="subItem.path"
         >
           <i :class="'el-icon-' + subItem.icon"></i>
@@ -59,21 +59,21 @@ export default class AsideBar extends Vue {
   menu = [
     {
       path: "/home",
-      name: "home",
+      name: "HomeView",
       label: "首页",
       icon: "s-home",
       url: "Home/Home",
     },
     {
       path: "/mall",
-      name: "mall",
+      name: "MallView",
       label: "商品管理",
       icon: "video-play",
       url: "MallManage/MallManage",
     },
     {
       path: "/user",
-      name: "user",
+      name: "UserView",
       label: "用户管理",
       icon: "user",
       url: "UserManage/UserManage",
@@ -81,17 +81,18 @@ export default class AsideBar extends Vue {
     {
       label: "其他",
       icon: "more",
+      path: "",
       children: [
         {
           path: "/page1",
-          name: "page1",
+          name: "Other1View",
           label: "页面1",
           icon: "setting",
           url: "Other/PageOne",
         },
         {
           path: "/page2",
-          name: "page2",
+          name: "Other2View",
           label: "页面2",
           icon: "setting",
           url: "Other/PageTwo",

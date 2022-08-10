@@ -68,10 +68,6 @@ export default class HomeView extends Vue {
 </script>
 
 <style lang="less" scoped>
-.el-header {
-  background-color: #333;
-}
-
 .el-main {
   padding-top: 0;
 }

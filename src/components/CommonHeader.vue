@@ -6,7 +6,18 @@
       icon="el-icon-menu"
       size="mini"
     ></el-button>
-    <h3 class="text-white p-2">首页</h3>
+    <!-- <h3 class="text-white p-2">首页</h3> -->
+    <!-- <el-breadcrumb class="pl-5" separator="/"> -->
+    <!--   <el-breadcrumb-item -->
+    <!--     v-for="item in tag" -->
+    <!--     :key="item.name" -->
+    <!--     :to="{ path: item.path }" -->
+    <!--     ><span class="breadcrumb-item">{{ -->
+    <!--       item.label -->
+    <!--     }}</span></el-breadcrumb-item -->
+    <!--   > -->
+    <!-- </el-breadcrumb> -->
+    <CommonTag />
     <el-dropdown trigger="click" class="ml-auto">
       <span class="el-dropdown-link">
         <img
@@ -25,8 +36,17 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import { mapState } from "vuex";
+import CommonTag from "@/components/CommonTag.vue";
 
-@Component
+@Component({
+  computed: mapState({
+    tag: (state) => state.tab.tabsList,
+  }),
+  components: {
+    CommonTag,
+  },
+})
 export default class CommonHeader extends Vue {
   imgUrl = require("../assets/peep-1.png");
 
@@ -36,4 +56,8 @@ export default class CommonHeader extends Vue {
 }
 </script>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+.breadcrumb-item {
+  color: white;
+}
+</style>
