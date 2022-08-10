@@ -18,7 +18,22 @@ const routes = [
       {
         path: "user",
         name: "UserView",
-        component: () => import("../views/UserView.vue"),
+        component: () => import("@/views/UserView.vue"),
+      },
+      {
+        path: "mall",
+        name: "MallView",
+        component: () => import("@/views/MallView.vue"),
+      },
+      {
+        path: "page1",
+        name: "Other1View",
+        component: () => import("@/views/Other1View.vue"),
+      },
+      {
+        path: "page2",
+        name: "Other2View",
+        component: () => import("@/views/Other2View.vue"),
       },
     ],
   },
