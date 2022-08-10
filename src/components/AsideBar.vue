@@ -20,6 +20,7 @@
     <el-menu-item
       v-for="item in noChildrens"
       v-bind:index="item.path"
+      @click="clickMenu(item)"
       :key="item.path"
     >
       <i :class="'el-icon-' + item.icon"></i>
@@ -39,6 +40,7 @@
         <el-menu-item
           v-for="subItem in item.children"
           :key="subItem.path"
+          @click="clickMenu(item)"
           :index="subItem.path"
         >
           <i :class="'el-icon-' + subItem.icon"></i>
@@ -104,6 +106,10 @@ export default class AsideBar extends Vue {
 
   handleClose(key, keyPath) {
     console.log(key, keyPath);
+  }
+
+  clickMenu(item) {
+    this.$store.commit("selectMenu", item);
   }
 
   get noChildrens() {
