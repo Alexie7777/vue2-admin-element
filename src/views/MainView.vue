@@ -9,7 +9,9 @@
           <CommonHeader />
         </el-header>
         <el-main>
-          <router-view></router-view>
+          <keep-alive include="HomeView">
+            <router-view></router-view>
+          </keep-alive>
         </el-main>
       </el-container>
     </el-container>
