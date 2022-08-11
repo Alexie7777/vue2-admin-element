@@ -13,12 +13,16 @@
             <p class="text-gray-400 py-2 text-base">超级管理员</p>
           </div>
         </div>
-        <div class="footer p-2 pl-4 border-0">
+        <div v-loading="ipIsLoading" class="footer p-2 pl-4 border-0">
           <p class="text-gray-400 pl-3 m-0 text-sm">
-            IP地址: {{ ipInfo.ip_address }}
+            IP地址:
+            <span :class="warningStyle">{{ ipInfo.ip_address }}</span>
           </p>
           <p class="text-gray-400 pl-3 text-sm">
-            登录地点: {{ ipInfo.city }} {{ ipInfo.country }}
+            登录地点:
+            <span :class="warningStyle"
+              >{{ ipInfo.city }} {{ ipInfo.country }}</span
+            >
           </p>
         </div>
       </el-card>
@@ -49,6 +53,8 @@ export default class HomeView extends Vue {
   name = "Alex7777";
   imgUrl = require("@/assets/peep-1.png");
   ipInfo = {};
+  hasError = false;
+  ipIsLoading = true;
 
   // created() {
   //   axios
@@ -68,14 +74,34 @@ export default class HomeView extends Vue {
     this.getGeoIp();
   }
 
+  get warningStyle() {
+    return this.hasError ? "text-red-400" : "";
+  }
+
   async getGeoIp() {
-    const result = await axios.get("http://ip-api.com/json/?fields=61439");
-    let { query: ip_address, city, country } = result.data;
-    this.ipInfo = {
-      country,
-      city,
-      ip_address,
-    };
+    try {
+      const result = await axios.get("http://ip-api.com/json/?fields=61439");
+      let { query: ip_address, city, country } = result.data;
+      this.ipInfo = {
+        country,
+        city,
+        ip_address,
+      };
+    } catch (error) {
+      this.hasError = true;
+      this.ipInfo = {
+        country: error.message,
+        ip_address: error.message,
+      };
+      this.$notify({
+        title: "警告",
+        message: "由于网络问题, 无法获取您的IP",
+        type: "warning",
+      });
+      console.log(error);
+    } finally {
+      this.ipIsLoading = false;
+    }
   }
 }
 </script>

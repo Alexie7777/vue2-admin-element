@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-col :span="18" class="mt-5">
-      <el-card style="height: 260px">
+      <el-card shadow="hover" style="height: 260px">
         <!-- <div style="height: 260px" ref="line"></div> -->
         <ECharts
           style="height: 260px"
@@ -11,7 +11,7 @@
       </el-card>
     </el-col>
     <el-col class="mt-5" :span="9">
-      <el-card style="height: 250px">
+      <el-card shadow="hover" style="height: 250px">
         <!-- <div style="height: 250px" ref="histogram"></div> -->
         <ECharts
           :isAxisChart="true"
@@ -21,7 +21,7 @@
       </el-card>
     </el-col>
     <el-col class="mt-5" :span="9">
-      <el-card style="height: 250px">
+      <el-card shadow="hover" style="height: 250px">
         <ECharts
           :isAxisChart="false"
           :chartOptions="echartsData.video"

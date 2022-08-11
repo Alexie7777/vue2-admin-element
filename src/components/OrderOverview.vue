@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-col v-for="(item, index) in data" :key="index" class="mt-5" :span="6">
-      <el-card>
+      <el-card shadow="hover">
         <div class="flex items-center">
           <div class="flex justify-center items-center self-stretch">
             <i
