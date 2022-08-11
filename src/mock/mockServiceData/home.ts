@@ -7,7 +7,7 @@ Mock.setup({
 const list: number[] = [];
 
 export default {
-  getStatisticData: () => {
+  getHomeData: () => {
     for (let i = 0; i < 7; i++) {
       list.push(Mock.mock({
         苹果: Mock.Random.float(100, 8000, 0, 0),

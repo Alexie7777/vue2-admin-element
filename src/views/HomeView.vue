@@ -36,7 +36,6 @@
 </template>
 
 <script lang="ts">
-import axios from "axios";
 import { Component, Vue } from "vue-property-decorator";
 import SalesOverview from "@/components/SalesOverview.vue";
 import OrderOverview from "@/components/OrderOverview.vue";
@@ -80,7 +79,9 @@ export default class HomeView extends Vue {
 
   async getGeoIp() {
     try {
-      const result = await axios.get("http://ip-api.com/json/?fields=61439");
+      const result = await this.$http.get(
+        "http://ip-api.com/json/?fields=61439"
+      );
       let { query: ip_address, city, country } = result.data;
       this.ipInfo = {
         country,
