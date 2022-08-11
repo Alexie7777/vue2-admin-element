@@ -50,19 +50,32 @@ export default class HomeView extends Vue {
   imgUrl = require("@/assets/peep-1.png");
   ipInfo = {};
 
+  // created() {
+  //   axios
+  //     .get(
+  //       "https://ipgeolocation.abstractapi.com/v1/?api_key=d2448e6f3e954983b3edb8c7f8944eae"
+  //     )
+  //     .then((res) => {
+  //       let { country, city, ip_address } = res.data;
+  //       this.ipInfo = {
+  //         country,
+  //         city,
+  //         ip_address,
+  //       };
+  //     });
+  // }
   created() {
-    axios
-      .get(
-        "https://ipgeolocation.abstractapi.com/v1/?api_key=d2448e6f3e954983b3edb8c7f8944eae"
-      )
-      .then((res) => {
-        let { country, city, ip_address } = res.data;
-        this.ipInfo = {
-          country,
-          city,
-          ip_address,
-        };
-      });
+    this.getGeoIp();
+  }
+
+  async getGeoIp() {
+    const result = await axios.get("http://ip-api.com/json/?fields=61439");
+    let { query: ip_address, city, country } = result.data;
+    this.ipInfo = {
+      country,
+      city,
+      ip_address,
+    };
   }
 }
 </script>
