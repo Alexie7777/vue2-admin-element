@@ -1,15 +1,15 @@
 <template>
   <div id="app">
     <el-container>
-      <el-aside width="auto">
+      <el-aside width="200px">
         <AsideBar :isCollapse="isCollapse" />
       </el-aside>
       <el-container>
-        <el-header>
+        <el-header width="auto">
           <CommonHeader />
         </el-header>
         <el-main>
-          <keep-alive include="HomeView">
+          <keep-alive>
             <router-view></router-view>
           </keep-alive>
         </el-main>
@@ -43,6 +43,11 @@ export default class MainView extends Vue {
 </script>
 
 <style lang="less">
+#app {
+  height: 100vh;
+  width: 100%;
+}
+
 *,
 html,
 body {
