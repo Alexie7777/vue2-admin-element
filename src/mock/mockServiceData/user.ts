@@ -1,38 +1,34 @@
 import Mock from "mockjs";
 
 Mock.setup({
-  timeout: 500,
+  timeout: "200-600",
 });
 
 const { Random } = Mock;
 const { mock } = Mock;
 
 export default {
-  getUserData: (): UserData => {
-    const name = Random.cname();
-    const age = Random.natural(18, 35);
-    const sex = Random.pick(["男", "女"]);
-    const birthday = Random.date("yyyy-MM-dd");
-    const address = Random.county() + Random.province() + Random.city();
+  getUserData: () => {
+    const result: UserData[] = [];
 
-    return {
-      data: {
-        name,
-        age,
-        sex,
-        birthday,
-        address,
-      },
-    };
+    for (let i = 0; i < 60; i++) {
+      const list: UserData = {
+        name: Random.cname(),
+        age: Random.natural(18, 35),
+        sex: Random.pick(["男", "女"]),
+        birthday: Random.date("yyyy-MM-dd"),
+        address: Random.county() + Random.province() + Random.city(),
+      };
+      result.push(list);
+    }
+    return result;
   },
 };
 
 interface UserData {
-  data: {
-    name: string;
-    age: number;
-    sex: "男" | "女";
-    birthday: string;
-    address: string;
-  };
+  name: string;
+  age: number;
+  sex: "男" | "女";
+  birthday: string;
+  address: string;
 }
