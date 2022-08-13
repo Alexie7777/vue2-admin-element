@@ -18,7 +18,8 @@ specifiers:
   core-js: ^3.8.3
   date-fns: ^2.29.1
   echarts: ^5.3.3
-  element-ui: ^2.15.9
+  element-china-area-data: ^5.0.2
+  element-ui: 2.15.8
   eslint: ^7.32.0
   eslint-plugin-vue: ^8.0.3
   less: ^4.0.0
@@ -27,6 +28,7 @@ specifiers:
   normalize.css: ^8.0.1
   postcss: ^7
   postcss-load-config: ^4.0.1
+  spacetime: ^7.1.4
   tailwindcss: npm:@tailwindcss/postcss7-compat@^2.2.17
   typescript: ~4.5.5
   vue: ^2.6.14
@@ -43,10 +45,12 @@ dependencies:
   core-js: 3.23.5
   date-fns: 2.29.1
   echarts: 5.3.3
-  element-ui: 2.15.9_vue@2.7.8
+  element-china-area-data: 5.0.2
+  element-ui: 2.15.8_vue@2.7.8
   normalize.css: 8.0.1
   postcss: 7.0.39
   postcss-load-config: 4.0.1_postcss@7.0.39
+  spacetime: 7.1.4
   tailwindcss: /@tailwindcss/postcss7-compat/2.2.17
   vue: 2.7.8
   vue-class-component: 7.2.6_vue@2.7.8
@@ -2917,6 +2921,10 @@ packages:
       ansi-styles: 4.3.0
       supports-color: 7.2.0
 
+  /china-area-data/5.0.1:
+    resolution: {integrity: sha512-BQDPpiv5Nn+018ekcJK2oSD9PAD+E1bvXB0wgabc//dFVS/KvRqCgg0QOEUt3vBkx9XzB5a9BmkJCEZDBxVjVw==}
+    dev: false
+
   /chokidar/3.5.3:
     resolution: {integrity: sha512-Dr3sfKRP6oTcjf2JmUmFJfeVMvXBdegxB0iVQ5eb2V10uFJUCAS8OByZdVAyVb8xXNz3GjjTgj9kLWsZTqE6kw==}
     engines: {node: '>= 8.10.0'}
@@ -3774,8 +3782,15 @@ packages:
   /electron-to-chromium/1.4.199:
     resolution: {integrity: sha512-WIGME0Cs7oob3mxsJwHbeWkH0tYkIE/sjkJ8ML2BYmuRcjhRl/q5kVDXG7W9LOOKwzPU5M0LBlXRq9rlSgnNlg==}
 
-  /element-ui/2.15.9_vue@2.7.8:
-    resolution: {integrity: sha512-dx45nQLt4Hn87/Z9eRr3ex6KFZbxlFAwEU3QoW3wA5EsYftvHTyL9Pq7VnXXD7hu1Eiaup2jcs6kp+/VSFmXuA==}
+  /element-china-area-data/5.0.2:
+    resolution: {integrity: sha512-vLQuvOKJy/uiX7MRHEk3x/j09hipuIl6DJ/C4XFUG7D7Pj3O47sy+Y6aAArM6k9v8cD9UX6e+yz2S4J+IPnZ8g==}
+    dependencies:
+      china-area-data: 5.0.1
+      lodash-es: 4.17.21
+    dev: false
+
+  /element-ui/2.15.8_vue@2.7.8:
+    resolution: {integrity: sha512-N54zxosRFqpYax3APY3GeRmtOZwIls6Z756WM0kdPZ5Q92PIeKHnZgF1StlamIg9bLxP1k+qdhTZvIeQlim09A==}
     peerDependencies:
       vue: ^2.5.17
     dependencies:
@@ -5038,6 +5053,10 @@ packages:
     dependencies:
       p-locate: 4.1.0
     dev: true
+
+  /lodash-es/4.17.21:
+    resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
+    dev: false
 
   /lodash.debounce/4.0.8:
     resolution: {integrity: sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==}
@@ -6666,6 +6685,10 @@ packages:
   /source-map/0.6.1:
     resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==}
     engines: {node: '>=0.10.0'}
+
+  /spacetime/7.1.4:
+    resolution: {integrity: sha512-ZzYuGjaMPE42p/fVU9Qcd+aMhgYzC83hgqMKyWlGILtponsLm5KJZgWzblLnOU8OblMQa3YXo/0IiZZ5JsTDfA==}
+    dev: false
 
   /spdx-correct/3.1.1:
     resolution: {integrity: sha512-cOYcUWwhCuHCXi49RhFRCyJEK3iPj1Ziz9DpViV3tbZOwXD49QzIN3MpOLJNxh2qwq2lJJZaKMVw9qNi4jTC0w==}

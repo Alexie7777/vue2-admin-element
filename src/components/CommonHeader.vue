@@ -6,17 +6,6 @@
       icon="el-icon-menu"
       size="mini"
     ></el-button>
-    <!-- <h3 class="text-white p-2">首页</h3> -->
-    <!-- <el-breadcrumb class="pl-5" separator="/"> -->
-    <!--   <el-breadcrumb-item -->
-    <!--     v-for="item in tag" -->
-    <!--     :key="item.name" -->
-    <!--     :to="{ path: item.path }" -->
-    <!--     ><span class="breadcrumb-item">{{ -->
-    <!--       item.label -->
-    <!--     }}</span></el-breadcrumb-item -->
-    <!--   > -->
-    <!-- </el-breadcrumb> -->
     <CommonTag />
     <el-dropdown trigger="click" class="ml-auto">
       <span class="el-dropdown-link">

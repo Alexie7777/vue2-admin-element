@@ -80,9 +80,10 @@ export default class HomeView extends Vue {
   async getGeoIp() {
     try {
       const result = await this.$http.get(
-        "http://ip-api.com/json/?fields=61439"
+        "https://ipgeolocation.abstractapi.com/v1/?api_key=d2448e6f3e954983b3edb8c7f8944eae"
       );
-      let { query: ip_address, city, country } = result.data;
+      console.log(result);
+      let { ip_address, city, country } = result.data;
       this.ipInfo = {
         country,
         city,

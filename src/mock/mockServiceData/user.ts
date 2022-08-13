@@ -13,11 +13,12 @@ export default {
 
     for (let i = 0; i < 60; i++) {
       const list: UserData = {
+        id: i + 1,
         name: Random.cname(),
         age: Random.natural(18, 35),
         sex: Random.pick(["男", "女"]),
         birthday: Random.date("yyyy-MM-dd"),
-        address: Random.county() + Random.province() + Random.city(),
+        address: Random.province() + Random.city() + Random.county(),
       };
       result.push(list);
     }
@@ -26,6 +27,7 @@ export default {
 };
 
 interface UserData {
+  id: number;
   name: string;
   age: number;
   sex: "男" | "女";
