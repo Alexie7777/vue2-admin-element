@@ -266,7 +266,8 @@ export default class UserView extends Vue {
 
   handleEdit(index, row) {
     this.editUserFormVisible = true;
-    this.editUserForm = row;
+    this.editUserForm = JSON.parse(JSON.stringify(row));
+    console.log(this.editUserForm);
   }
 
   handleDelete(index, row) {
