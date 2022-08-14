@@ -80,9 +80,17 @@
       </el-dialog>
 
       <div class="flex ml-auto">
-        <el-input placeholder="请输入内容" v-model="searchBox" clearable>
+        <el-input
+          placeholder="请输入内容"
+          @clear="getUserList"
+          v-model="searchBox"
+          @keyup.enter.native="handleSearch"
+          clearable
+        >
         </el-input>
-        <el-button type="primary">搜索</el-button>
+        <el-button class="ml-2" @click="handleSearch" type="primary"
+          >搜索</el-button
+        >
       </div>
     </div>
 
@@ -210,7 +218,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Watch } from "vue-property-decorator";
 import { regionData, CodeToText } from "element-china-area-data";
 import spacetime from "spacetime";
 
@@ -267,7 +275,6 @@ export default class UserView extends Vue {
   handleEdit(index, row) {
     this.editUserFormVisible = true;
     this.editUserForm = JSON.parse(JSON.stringify(row));
-    console.log(this.editUserForm);
   }
 
   handleDelete(index, row) {
@@ -302,7 +309,6 @@ export default class UserView extends Vue {
   }
 
   handleEditAddress(value) {
-    console.log(value);
     let result = "";
     value.forEach((item) => {
       result += CodeToText[item];
@@ -331,7 +337,9 @@ export default class UserView extends Vue {
     this.$refs[formName].validate((valid) => {
       if (valid) {
         const { id } = this.editUserForm;
-        this.tableData[id] = this.editUserForm;
+        for (const [key, value] of Object.entries(this.editUserForm)) {
+          this.$set(this.tableData[id - 1], key, value);
+        }
         this.editUserFormVisible = false;
 
         this.$message({
@@ -343,6 +351,17 @@ export default class UserView extends Vue {
         return false;
       }
     });
+  }
+
+  handleSearch() {
+    const filterArr = this.tableData.filter((item) => {
+      return item.name.includes(this.searchBox);
+    });
+    this.tableData = filterArr;
+  }
+
+  handleClear() {
+    console.log("clear");
   }
 
   newUserData() {
@@ -360,10 +379,25 @@ export default class UserView extends Vue {
     }
   }
 
-  async created() {
+  created() {
+    this.getUserList();
+  }
+
+  handleKeydown() {
+    console.log("nihao");
+  }
+
+  async getUserList() {
     const response = await this.$http.get("/api/userData");
     this.tableData = response.data;
     this.isLoading = false;
+  }
+
+  @Watch("searchBox")
+  onSearchBoxChanged(val: string) {
+    if (val === "") {
+      this.getUserList();
+    }
   }
 }
 </script>
