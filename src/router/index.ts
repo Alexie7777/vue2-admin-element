@@ -1,5 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import store from "../store";
 
 Vue.use(VueRouter);
 
@@ -50,5 +51,15 @@ const router = new VueRouter(
     routes,
   },
 );
+
+router.beforeEach((to, _from, next) => {
+  store.commit("getToken");
+  const token = store.state.user.token;
+  if (!token && to.name !== "LoginView") {
+    next({ name: "LoginView" });
+  } else {
+    next();
+  }
+});
 
 export default router;

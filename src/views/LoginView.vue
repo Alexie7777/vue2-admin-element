@@ -1,7 +1,7 @@
 <template>
   <div class="login-box">
     <el-form
-      ref="ruleFormRef"
+      ref="ruleForm"
       :model="ruleForm"
       status-icon
       :rules="rules"
@@ -23,14 +23,14 @@
             class="w-80"
             v-model="ruleForm.password"
             type="password"
-            @keyup.enter="submitForm(ruleFormRef)"
+            @keyup.enter.native="submitForm('ruleForm')"
             autocomplete="off"
           />
         </el-form-item>
       </div>
       <div class="flex justify-center">
         <el-form-item>
-          <el-button type="primary" @click="submitForm(ruleFormRef)"
+          <el-button type="primary" @click="submitForm('ruleForm')"
             >登录</el-button
           >
         </el-form-item>
@@ -72,6 +72,8 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import Mock from "mockjs";
+import { getMenu } from "@/api/request";
 
 @Component
 export default class LoginView extends Vue {
@@ -89,6 +91,28 @@ export default class LoginView extends Vue {
       { required: true, message: "请输入密码", trigger: "blur" },
       { min: 3, max: 10, message: "密码长度必须在3到10之间", trigger: "blur" },
     ],
+  };
+
+  submitForm = (formName) => {
+    this.$refs[formName].validate((valid) => {
+      if (valid) {
+        this.$http.post("/api/permission", this.ruleForm).then((res) => {
+          console.log(res);
+          if (res.data.code === 200) {
+            console.log(res.data.message);
+            const token = Mock.Random.guid();
+            this.$store.commit("setToken", token);
+            this.$router.push({ name: "HomeView" });
+          } else {
+            this.$message.warning(res.data.message);
+            console.log(res.data.message);
+          }
+        });
+      } else {
+        console.log("error submit!");
+        return false;
+      }
+    });
   };
 }
 </script>

@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
+    "dev": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
@@ -16,6 +17,7 @@
     "echarts": "^5.3.3",
     "element-china-area-data": "^5.0.2",
     "element-ui": "2.15.8",
+    "js-cookie": "^3.0.1",
     "normalize.css": "^8.0.1",
     "postcss": "^7",
     "postcss-load-config": "^4.0.1",
@@ -30,6 +32,7 @@
   "devDependencies": {
     "@babel/core": "^7.18.9",
     "@babel/helper-compilation-targets": "^7.18.9",
+    "@types/js-cookie": "^3.0.2",
     "@types/mockjs": "^1.0.6",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",

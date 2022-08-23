@@ -1,10 +1,11 @@
 import service from "./index";
 
-const getData = function () {
-  return service({
-    url: "getData",
-    method: "get",
+const getMenu = (params) => {
+  return service.request({
+    url: "/permission",
+    method: "post",
+    data: params,
   });
 };
 
-export { getData };
+export { getMenu };

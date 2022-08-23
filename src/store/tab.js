@@ -1,4 +1,4 @@
-export default {
+const tab = {
   state: {
     isCollapse: false,
     tabsList: [
@@ -46,3 +46,5 @@ export default {
     },
   },
 };
+
+export default tab;
