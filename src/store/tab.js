@@ -1,3 +1,5 @@
+import Cookie from "js-cookie";
+
 const tab = {
   state: {
     isCollapse: false,
@@ -10,6 +12,7 @@ const tab = {
       },
     ],
     currentTab: null,
+    menu: [],
   },
   mutations: {
     toggleMenu(state) {
@@ -43,6 +46,45 @@ const tab = {
       if (result > -1) {
         state.currentTab = state.tabsList[result];
       }
+    },
+
+    updateMenu(state, val) {
+      state.menu = val;
+      console.log(JSON.stringify(val), "JSON");
+      Cookie.set("menu", JSON.stringify(val));
+    },
+
+    clearMenu(state) {
+      state.menu = [];
+      Cookie.remove("menu");
+    },
+
+    addMenu(state, router) {
+      if (!Cookie.get("menu")) {
+        return;
+      }
+
+      console.log(Cookie.get("menu"));
+      const menu = JSON.parse(Cookie.get("menu"));
+      state.menu = menu;
+      const menuArr = [];
+      menu.forEach((item) => {
+        if (item.children) {
+          item.children = item.children.map((child) => {
+            child.component = () => import(`@/views/${child.name}.vue`);
+            return child;
+          });
+          menuArr.push(...item.children);
+        } else {
+          item.component = () => import(`@/views/${item.name}.vue`);
+          menuArr.push(item);
+        }
+      });
+
+      console.log(router);
+      menuArr.forEach((item) => {
+        router.addRoute("MainView", item);
+      });
     },
   },
 };

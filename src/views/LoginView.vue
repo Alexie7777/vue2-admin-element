@@ -72,8 +72,6 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import Mock from "mockjs";
-import { getMenu } from "@/api/request";
 
 @Component
 export default class LoginView extends Vue {
@@ -97,15 +95,14 @@ export default class LoginView extends Vue {
     this.$refs[formName].validate((valid) => {
       if (valid) {
         this.$http.post("/api/permission", this.ruleForm).then((res) => {
-          console.log(res);
           if (res.data.code === 200) {
-            console.log(res.data.message);
-            const token = Mock.Random.guid();
-            this.$store.commit("setToken", token);
+            console.log(res);
+            this.$store.commit("updateMenu", res.data.menu);
+            this.$store.commit("setToken", res.data.token);
+            this.$store.commit("addMenu", this.$router);
             this.$router.push({ name: "HomeView" });
           } else {
             this.$message.warning(res.data.message);
-            console.log(res.data.message);
           }
         });
       } else {

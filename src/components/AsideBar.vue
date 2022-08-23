@@ -57,48 +57,48 @@ import { Vue, Prop, Component } from "vue-property-decorator";
 export default class AsideBar extends Vue {
   @Prop() isCollapse!: boolean;
   menu = [
-    {
-      path: "/home",
-      name: "HomeView",
-      label: "首页",
-      icon: "s-home",
-      url: "Home/Home",
-    },
-    {
-      path: "/mall",
-      name: "MallView",
-      label: "商品管理",
-      icon: "video-play",
-      url: "MallManage/MallManage",
-    },
-    {
-      path: "/user",
-      name: "UserView",
-      label: "用户管理",
-      icon: "user",
-      url: "UserManage/UserManage",
-    },
-    {
-      label: "其他",
-      icon: "more",
-      path: "",
-      children: [
-        {
-          path: "/page1",
-          name: "Other1View",
-          label: "页面1",
-          icon: "setting",
-          url: "Other/PageOne",
-        },
-        {
-          path: "/page2",
-          name: "Other2View",
-          label: "页面2",
-          icon: "setting",
-          url: "Other/PageTwo",
-        },
-      ],
-    },
+    // {
+    //   path: "/home",
+    //   name: "HomeView",
+    //   label: "首页",
+    //   icon: "s-home",
+    //   url: "Home/Home",
+    // },
+    // {
+    //   path: "/mall",
+    //   name: "MallView",
+    //   label: "商品管理",
+    //   icon: "video-play",
+    //   url: "MallManage/MallManage",
+    // },
+    // {
+    //   path: "/user",
+    //   name: "UserView",
+    //   label: "用户管理",
+    //   icon: "user",
+    //   url: "UserManage/UserManage",
+    // },
+    // {
+    //   label: "其他",
+    //   icon: "more",
+    //   path: "",
+    //   children: [
+    //     {
+    //       path: "/page1",
+    //       name: "Other1View",
+    //       label: "页面1",
+    //       icon: "setting",
+    //       url: "Other/PageOne",
+    //     },
+    //     {
+    //       path: "/page2",
+    //       name: "Other2View",
+    //       label: "页面2",
+    //       icon: "setting",
+    //       url: "Other/PageTwo",
+    //     },
+    //   ],
+    // },
   ];
 
   handleOpen(key, keyPath) {
@@ -114,11 +114,15 @@ export default class AsideBar extends Vue {
   }
 
   get noChildrens() {
-    return this.menu.filter((item) => !item.children);
+    return this.asyncMenu.filter((item) => !item.children);
   }
 
   get hasChildrens() {
-    return this.menu.filter((item) => item.children);
+    return this.asyncMenu.filter((item) => item.children);
+  }
+
+  get asyncMenu() {
+    return this.$store.state.tab.menu;
   }
 }
 </script>
