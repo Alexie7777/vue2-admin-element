@@ -50,7 +50,6 @@ const tab = {
 
     updateMenu(state, val) {
       state.menu = val;
-      console.log(JSON.stringify(val), "JSON");
       Cookie.set("menu", JSON.stringify(val));
     },
 
@@ -65,7 +64,6 @@ const tab = {
         return;
       }
 
-      console.log(Cookie.get("menu"));
       const menu = JSON.parse(Cookie.get("menu"));
       state.menu = menu;
       const menuArr = [];
@@ -82,7 +80,6 @@ const tab = {
         }
       });
 
-      console.log(router);
       menuArr.forEach((item) => {
         router.addRoute("MainView", item);
       });

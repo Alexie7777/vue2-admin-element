@@ -53,18 +53,11 @@ const router = new VueRouter(
 );
 
 router.beforeEach((to, _from, next) => {
-  console.log("Vue Router Guard");
-
   store.commit("getToken");
   const token = store.state.user.token;
   if (!token && to.name !== "LoginView") {
-    console.log("Need Token");
-
     next({ name: "LoginView" });
   } else {
-    console.log("Pass", token);
-    console.log(store.state.user.token);
-
     next();
   }
 });

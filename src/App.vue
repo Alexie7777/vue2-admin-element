@@ -33,4 +33,8 @@ export default class App extends Vue {
 img {
   max-width: 100%;
 }
+
+.md-card {
+  width: 286px;
+}
 </style>

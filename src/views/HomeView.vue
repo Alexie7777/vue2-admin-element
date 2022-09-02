@@ -1,7 +1,7 @@
 <template>
   <el-row :gutter="15">
     <el-col :span="6">
-      <el-card class="mt-5" shadow="hover">
+      <el-card class="mt-5 md-card" shadow="hover">
         <div class="flex justify-start gap-5 items-center" slot="header">
           <img
             :src="imgUrl"
@@ -26,7 +26,7 @@
           </p>
         </div>
       </el-card>
-      <el-card class="mt-5" shadow="hover">
+      <el-card class="mt-5 md-card" shadow="hover">
         <SalesOverview />
       </el-card>
     </el-col>
@@ -55,20 +55,6 @@ export default class HomeView extends Vue {
   hasError = false;
   ipIsLoading = true;
 
-  // created() {
-  //   axios
-  //     .get(
-  //       "https://ipgeolocation.abstractapi.com/v1/?api_key=d2448e6f3e954983b3edb8c7f8944eae"
-  //     )
-  //     .then((res) => {
-  //       let { country, city, ip_address } = res.data;
-  //       this.ipInfo = {
-  //         country,
-  //         city,
-  //         ip_address,
-  //       };
-  //     });
-  // }
   created() {
     this.getGeoIp();
   }
@@ -82,7 +68,6 @@ export default class HomeView extends Vue {
       const result = await this.$http.get(
         "https://ipgeolocation.abstractapi.com/v1/?api_key=d2448e6f3e954983b3edb8c7f8944eae"
       );
-      console.log(result);
       let { ip_address, city, country } = result.data;
       this.ipInfo = {
         country,
@@ -100,7 +85,6 @@ export default class HomeView extends Vue {
         message: "由于网络问题, 无法获取您的IP",
         type: "warning",
       });
-      console.log(error);
     } finally {
       this.ipIsLoading = false;
     }

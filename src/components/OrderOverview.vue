@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-col v-for="(item, index) in data" :key="index" class="mt-5" :span="6">
-      <el-card shadow="hover">
+      <el-card class="md-card" shadow="hover">
         <div class="flex items-center">
           <div class="flex justify-center items-center self-stretch">
             <i
@@ -40,24 +40,6 @@ export default class OrderOverview extends Vue {
     },
     {
       name: "今日未支付订单",
-      value: 1234,
-      icon: "s-goods",
-      color: "#5ab1ef",
-    },
-    {
-      name: "本月支付订单",
-      value: 1234,
-      icon: "success",
-      color: "#2ec7c9",
-    },
-    {
-      name: "本月收藏订单",
-      value: 1234,
-      icon: "star-on",
-      color: "#ffb980",
-    },
-    {
-      name: "本月未支付订单",
       value: 1234,
       icon: "s-goods",
       color: "#5ab1ef",

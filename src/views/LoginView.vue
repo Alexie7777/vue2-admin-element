@@ -96,7 +96,6 @@ export default class LoginView extends Vue {
       if (valid) {
         this.$http.post("/api/permission", this.ruleForm).then((res) => {
           if (res.data.code === 200) {
-            console.log(res);
             this.$store.commit("updateMenu", res.data.menu);
             this.$store.commit("setToken", res.data.token);
             this.$store.commit("addMenu", this.$router);
