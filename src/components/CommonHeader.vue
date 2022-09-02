@@ -7,7 +7,7 @@
       size="mini"
     ></el-button>
     <CommonTag />
-    <el-dropdown trigger="click" class="ml-auto">
+    <el-dropdown trigger="click" @command="handleCommand" class="ml-auto">
       <span class="el-dropdown-link">
         <img
           :src="imgUrl"
@@ -17,7 +17,7 @@
       </span>
       <el-dropdown-menu slot="dropdown">
         <el-dropdown-item>个人中心</el-dropdown-item>
-        <el-dropdown-item>退出</el-dropdown-item>
+        <el-dropdown-item command="signout">退出</el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
   </div>
@@ -41,6 +41,14 @@ export default class CommonHeader extends Vue {
 
   handleToggle() {
     this.$store.commit("toggleMenu");
+  }
+
+  handleCommand(command) {
+    if (command === "signout") {
+      this.$store.commit("clearMenu");
+      this.$store.commit("clearToken");
+      this.$router.push({ name: "LoginView" });
+    }
   }
 }
 </script>
