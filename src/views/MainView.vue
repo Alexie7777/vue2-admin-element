@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <el-container>
-      <el-aside width="200px">
+      <el-aside :width="width">
         <AsideBar :isCollapse="isCollapse" />
       </el-aside>
       <el-container>
@@ -34,6 +34,10 @@ import { Component, Vue } from "vue-property-decorator";
 export default class MainView extends Vue {
   get isCollapse() {
     return this.$store.state.tab.isCollapse;
+  }
+
+  get width() {
+    return this.isCollapse ? "64px" : "200px";
   }
 
   // handleToggle() {

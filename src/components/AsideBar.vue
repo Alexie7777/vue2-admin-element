@@ -6,6 +6,8 @@
     text-color="#fff"
     router
     class="el-menu-vertical-demo h-screen"
+    @open="handleOpen"
+    @close="handleClose"
     :collapse="isCollapse"
   >
     <h3
@@ -54,6 +56,58 @@ import { Vue, Prop, Component } from "vue-property-decorator";
 @Component
 export default class AsideBar extends Vue {
   @Prop() isCollapse!: boolean;
+  // menu = [
+  // {
+  //   path: "/home",
+  //   name: "HomeView",
+  //   label: "首页",
+  //   icon: "s-home",
+  //   url: "Home/Home",
+  // },
+  // {
+  //   path: "/mall",
+  //   name: "MallView",
+  //   label: "商品管理",
+  //   icon: "video-play",
+  //   url: "MallManage/MallManage",
+  // },
+  // {
+  //   path: "/user",
+  //   name: "UserView",
+  //   label: "用户管理",
+  //   icon: "user",
+  //   url: "UserManage/UserManage",
+  // },
+  // {
+  //   label: "其他",
+  //   icon: "more",
+  //   path: "",
+  //   children: [
+  //     {
+  //       path: "/page1",
+  //       name: "Other1View",
+  //       label: "页面1",
+  //       icon: "setting",
+  //       url: "Other/PageOne",
+  //     },
+  //     {
+  //       path: "/page2",
+  //       name: "Other2View",
+  //       label: "页面2",
+  //       icon: "setting",
+  //       url: "Other/PageTwo",
+  //     },
+  //   ],
+  // },
+  // ];
+
+  handleOpen(key, keyPath) {
+    console.log(key, keyPath);
+  }
+
+  handleClose(key, keyPath) {
+    console.log(key, keyPath);
+  }
 
   clickMenu(item) {
     this.$store.commit("selectMenu", item);
@@ -65,10 +119,6 @@ export default class AsideBar extends Vue {
 
   get hasChildrens() {
     return this.asyncMenu.filter((item) => item.children);
-  }
-
-  mounted() {
-    console.log(this.hasChildrens);
   }
 
   get asyncMenu() {
