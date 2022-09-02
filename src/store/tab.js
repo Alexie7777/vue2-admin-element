@@ -57,6 +57,7 @@ const tab = {
     clearMenu(state) {
       state.menu = [];
       Cookie.remove("menu");
+      Cookie.remove("token");
     },
 
     addMenu(state, router) {

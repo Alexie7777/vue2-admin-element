@@ -20,3 +20,10 @@ new Vue({
   router,
   render: (h) => h(App),
 }).$mount("#app");
+
+const token = store.state.user.token;
+if (token) {
+  console.log("Update Router!");
+
+  store.commit("addMenu", router);
+}
